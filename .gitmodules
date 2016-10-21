@@ -1,0 +1,3 @@
+[submodule "public/javascripts/external"]
+	path = public/javascripts/external
+	url = https://github.com/google/closure-library
