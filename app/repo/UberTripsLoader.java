@@ -39,9 +39,9 @@ public class UberTripsLoader {
 	}
 	
 	public List<UberTrip> load() {
-		String rawQuery = "from UberTrip where ";
+		String rawQuery = "SELECT * from uber_trips where ";
 		rawQuery += String.join(" AND ", whereClauses);
-		Query query = JPA.em().createQuery(rawQuery);
+		Query query = JPA.em().createNativeQuery(rawQuery, UberTrip.class);
 		List<UberTrip> trips = query.getResultList();
 		return trips;
 	}
@@ -50,9 +50,9 @@ public class UberTripsLoader {
 		Geofence geofence) 
 	{
 		String whereClause = "";
-		whereClause += "((pickup_lat BETWEEN " + geofence.getMinLat() + 
-				" AND " + geofence.getMaxLat() + ") AND " + 
-				" (pickup_lng BETWEEN " + geofence.getMinLng() + " AND " + 
+		whereClause += "((pickup_lat > " + geofence.getMinLat() + 
+				" AND pickup_lat < " + geofence.getMaxLat() + ") AND " + 
+				" (pickup_lng > " + geofence.getMinLng() + " AND pickup_lng < " + 
 				geofence.getMaxLng() + ")) ";
 		return whereClause;
 	}

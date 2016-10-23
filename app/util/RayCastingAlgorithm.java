@@ -4,6 +4,7 @@ import models.LatLng;
 import models.PolygonGeofence;
 
 public class RayCastingAlgorithm {
+	
 	public static boolean contains(
 			PolygonGeofence border, 
 			LatLng latLng) {
@@ -50,6 +51,6 @@ public class RayCastingAlgorithm {
 		Double ratio1 = (edgeUpper.lng - edgeLower.lng) / (edgeUpper.lat - edgeLower.lat);
 		Double ratio2 = (point.lng - edgeLower.lng) / (point.lat - edgeLower.lat);
 		
-		return ratio2 >= ratio1;
+		return ratio2 > ratio1;
 	}
 }

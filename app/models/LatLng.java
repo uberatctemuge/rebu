@@ -21,4 +21,18 @@ public class LatLng {
 			.append("}")
 			.toString();
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof LatLng)) return false;
+		LatLng other = (LatLng)o;
+		Double epsilon = 0.000001;
+		return (Math.abs(lat - other.lat) < epsilon) &&
+				(Math.abs(lng - other.lng) < epsilon);
+	}
+	
+	@Override
+	public int hashCode() {
+		return lat.hashCode()*71 + lng.hashCode() + 31;
+	}
 }

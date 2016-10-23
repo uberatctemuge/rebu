@@ -6,13 +6,14 @@ rebu.MapDrawer = function() {
   this.initMap();
   this.initDrawingManager();
   this.addOverlayListener();
+  this.tripInfo = new rebu.TripInfo();
 };
 
 /**
  * Initialize the map
  */
 rebu.MapDrawer.prototype.initMap = function() {
-  this.map = new google.maps.Map(document.getElementById('map'), {
+  this.map = new google.maps.Map($("#map")[0], {
       center: {lat: 40.7128, lng: -74.0059},
       zoom: 16
     });
@@ -28,7 +29,7 @@ rebu.MapDrawer.prototype.initDrawingManager = function() {
         drawingControl: true,
         drawingControlOptions: {
           position: google.maps.ControlPosition.TOP_CENTER,
-          drawingModes: ['marker', 'circle', 'polygon', 'rectangle']
+          drawingModes: ['marker', 'polygon']
         },
         markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
         circleOptions: {
@@ -60,9 +61,10 @@ rebu.MapDrawer.prototype.drawMarkersFromTrip = function(ubertrips) {
 	  //markers.push(markerDropoff);
   }
   
-  for (var i = 0; i < markers.length; i++) {
-	  self.addMarker(markers[i]);
-  }
+  //for (var i = 0; i < markers.length; i++) {
+  //	  self.addMarker(markers[i]);
+  //}
+  new rebu.HeatMap(self.map, markers);
 }
 
 //Adds a marker to the map.
@@ -78,15 +80,17 @@ rebu.MapDrawer.prototype.addOverlayListener = function() {
   var self = this;
   google.maps.event.addListener(self.drawingManager, 'overlaycomplete', function(event) {
     var vertices = event.overlay.getPath().getArray();
-    sendOverlayCompleteUpdate(event.type, vertices, self);
+    self.sendOverlayCompleteUpdate(event.type, vertices, self);
   });
 }
 
-var sendOverlayCompleteUpdate = function(type, vertices, mapDrawer) {
-	var jsonVertices = JSON.stringify(vertices);
+rebu.MapDrawer.prototype.sendOverlayCompleteUpdate = function(type, vertices, mapDrawer) {
+	var self = this,
+	    jsonVertices = JSON.stringify(vertices);
 	
 	$.post("/overlayComplete", {type: type, jsonVertices: jsonVertices}, function(data, status){
-		mapDrawer.drawMarkersFromTrip(data);
+		mapDrawer.drawMarkersFromTrip(data.trips);
+		self.tripInfo.addPositions(data.popularPositions);
     });
 }
 

@@ -5,7 +5,9 @@ import java.util.List;
 import javax.persistence.Query;
 
 import models.GetUberTripsRequest;
+import models.GetUberTripsResponse;
 import models.PolygonGeofence;
+import models.PopularPosition;
 import models.UberTrip;
 
 import com.google.gson.JsonArray;
@@ -34,13 +36,21 @@ public class UberController extends Controller{
 	{
 		PolygonGeofence geoFence = PolygonGeofence
 			.from(jsonVertices);
-		List<UberTrip> trips = new UberTripRepo()
-			.fetchUberTrips(new GetUberTripsRequest().addGeofence(geoFence))
-			.uberTrips;
-		JsonArray jsonArray = new JsonArray();
+		GetUberTripsResponse res = new UberTripRepo().fetchUberTrips(
+				new GetUberTripsRequest().addGeofence(geoFence));
+		List<UberTrip> trips = res.uberTrips;
+		List<PopularPosition> popularPositions = res.popularPositions;
+		JsonArray tripsJson = new JsonArray();
 		for (UberTrip trip : trips) {
-			jsonArray.add(trip.toJson());
+			tripsJson.add(trip.toJson());
 		}
-		renderJSON(jsonArray.toString());
+		JsonArray popularPositionsJson = new JsonArray();
+		for (PopularPosition pp : popularPositions) {
+			popularPositionsJson.add(pp.toJson());
+		}
+		JsonObject response = new JsonObject();
+		response.add("trips", tripsJson);
+		response.add("popularPositions", popularPositionsJson);
+		renderJSON(response.toString());
 	}
 }

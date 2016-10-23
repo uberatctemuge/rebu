@@ -12,9 +12,15 @@ import java.util.Collection;
  */
 public class GetUberTripsRequest {
 	private Collection<Geofence> geoFences;
+	private boolean shouldContainPickups;
+	private boolean shouldContainDropoffs;
+	private boolean shouldContainWholeTrip;
 	
 	public GetUberTripsRequest() {
 		this.geoFences = new ArrayList<>();
+		shouldContainPickups = true; // default to true
+		shouldContainDropoffs = false;
+		shouldContainWholeTrip = false;
 	}
 
 	public Collection<Geofence> getGeoFences() {
@@ -26,5 +32,32 @@ public class GetUberTripsRequest {
 	{
 		this.geoFences.add(geofence);
 		return this;
+	}
+	
+	public GetUberTripsRequest byPickups() {
+		this.shouldContainPickups = true;
+		return this;
+	}
+	
+	public GetUberTripsRequest byDropoffs() {
+		this.shouldContainDropoffs = true;
+		return this;
+	}
+	
+	public GetUberTripsRequest byWholeTrip() {
+		this.shouldContainWholeTrip = true;
+		return this;
+	}
+
+	public boolean shouldContainWholeTrip() {
+		return shouldContainWholeTrip;
+	}
+	
+	public boolean shouldContainPickups() {
+		return shouldContainPickups;
+	}
+	
+	public boolean shouldContainDropoffs() {
+		return shouldContainDropoffs;
 	}
 }
