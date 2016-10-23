@@ -3,7 +3,6 @@ package controllers;
 import play.*;
 import play.mvc.*;
 import repo.UberTripsLoader;
-import scripts.SaveUberDataToDb;
 
 import java.util.*;
 
