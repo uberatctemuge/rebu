@@ -6,7 +6,7 @@ rebu.MapDrawer = function() {
   this.initMap();
   this.initDrawingManager();
   this.addOverlayListener();
-  this.tripInfo = new rebu.TripInfo();
+  this.tripInfo = new rebu.TripInfo(this);
 };
 
 /**
@@ -69,11 +69,11 @@ rebu.MapDrawer.prototype.drawMarkersFromTrip = function(ubertrips) {
 
 //Adds a marker to the map.
 rebu.MapDrawer.prototype.addMarker = function(location) {
-  var self = this;
-  var marker = new google.maps.Marker({
-    position: location,
-    map: self.map
-  });
+  var self = this,
+      marker = new google.maps.Marker({
+        position: location,
+        map: self.map
+      });
 }
 
 rebu.MapDrawer.prototype.addOverlayListener = function() {
@@ -91,6 +91,7 @@ rebu.MapDrawer.prototype.sendOverlayCompleteUpdate = function(type, vertices, ma
 	$.post("/overlayComplete", {type: type, jsonVertices: jsonVertices}, function(data, status){
 		mapDrawer.drawMarkersFromTrip(data.trips);
 		self.tripInfo.addPositions(data.popularPositions);
+		self.tripInfo.setTripCounts(data.trips.length);
     });
 }
 
