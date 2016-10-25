@@ -9,7 +9,14 @@ import models.GetUberTripsResponse;
 import models.LatLng;
 import models.PopularPosition;
 import models.UberTrip;
-
+/**
+ * A server that provides that related to uber trips
+ * 
+ * In distributed systems world,
+ * it should be by RPC server
+ * @author temuge
+ *
+ */
 public class UberTripRepo {
 	
 	private static final int LIMIT_TOP = 10;

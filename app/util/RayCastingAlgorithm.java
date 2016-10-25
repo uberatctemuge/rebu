@@ -2,7 +2,12 @@ package util;
 
 import models.LatLng;
 import models.PolygonGeofence;
-
+/**
+ * Implementation of Ray Casting algorithm
+ * https://en.wikipedia.org/wiki/Ray_casting
+ * @author temuge
+ *
+ */
 public class RayCastingAlgorithm {
 	
 	public static boolean contains(

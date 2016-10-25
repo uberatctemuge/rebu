@@ -8,6 +8,9 @@ rebu.HeatMap = function(map, points) {
   this.initHeatMap(map, points);
 };
 
+/**
+ * Initialize the heatmap
+ */
 rebu.HeatMap.prototype.initHeatMap = function(map, points) {
   googleLatLngs = [];
   allpoints = points;
@@ -24,6 +27,9 @@ rebu.HeatMap.prototype.initHeatMap = function(map, points) {
   heatmap.setMap(map);
 }
 
+/**
+ * Remove heatmap from the map
+ */
 rebu.HeatMap.prototype.removeHeatmap = function() {
   self.heatmap.setMap(null);
 }

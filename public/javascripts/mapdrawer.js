@@ -63,7 +63,9 @@ rebu.MapDrawer.prototype.drawHeatmap = function(ubertrips) {
   self.heatMap = new rebu.HeatMap(self.map, markers);
 }
 
-//Adds a marker to the map.
+/**
+ * Adds a marker to the map.
+ */
 rebu.MapDrawer.prototype.addMarker = function(location) {
   var self = this;
   self.marker = new google.maps.Marker({
@@ -72,11 +74,17 @@ rebu.MapDrawer.prototype.addMarker = function(location) {
   });
 }
 
+/**
+ * Deletes the marker from map
+ */
 rebu.MapDrawer.prototype.deleteMarker = function() {
   var self = this;
   self.marker.setMap(null);
 }
 
+/**
+ * Binds handler for event of shape is drawn completely
+ */
 rebu.MapDrawer.prototype.addOverlayListener = function() {
   var self = this;
   google.maps.event.addListener(self.drawingManager, 'overlaycomplete', function(event) {
@@ -94,6 +102,9 @@ rebu.MapDrawer.prototype.addOverlayListener = function() {
   });
 }
 
+/**
+ * Sends AJAX request to retrieve ubert trip data
+ */
 rebu.MapDrawer.prototype.sendOverlayCompleteUpdate = function(type, vertices, mapDrawer) {
   var self = this,
 	  jsonVertices = JSON.stringify(vertices);
@@ -106,6 +117,9 @@ rebu.MapDrawer.prototype.sendOverlayCompleteUpdate = function(type, vertices, ma
   });
 }
 
+/**
+ * Draw street view given coordinate
+ */
 rebu.MapDrawer.prototype.drawStreetView = function(position) {
   var self = this;
   self.streetView = new rebu.StreetView(self.map, position, self.dom);

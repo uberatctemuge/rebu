@@ -1,7 +1,11 @@
 package models;
 
 import java.util.Objects;
-
+/**
+ * A data structure representing a Lat,Lng pair
+ * @author temuge
+ *
+ */
 public class LatLng {
 	public Double lat;
 	public Double lng;

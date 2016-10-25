@@ -8,10 +8,16 @@ rebu.TripInfo = function(mapDrawer) {
   this.init(mapDrawer);
 };
 
+/**
+ * Initialize the TripInfo
+ */
 rebu.TripInfo.prototype.init = function(mapDrawer) {
   this.mapDrawer = mapDrawer;
 }
 
+/**
+ * Add popular positions info to the UI
+ */
 rebu.TripInfo.prototype.addPositions = function(positions) {
   var self = this;
   $('#popular-positions-headers').show();
@@ -27,12 +33,18 @@ rebu.TripInfo.prototype.addPositions = function(positions) {
   self.addbinderForLatLgnRow();
 }
 
+/**
+ * Sets the trip count
+ */
 rebu.TripInfo.prototype.setTripCounts = function(count) {
   $('#trip-count-container').show();
   $('#trip-count').text(count);
   $('#announcement').hide();
 }
 
+/**
+ * Ad binder for rows of popular positions
+ */
 rebu.TripInfo.prototype.addbinderForLatLgnRow = function() {
   var self = this;
   $('.js-lat-lng-row').hover(
@@ -49,18 +61,30 @@ rebu.TripInfo.prototype.addbinderForLatLgnRow = function() {
   });
 }
 
+/**
+ * remove popular positions from dom
+ */
 rebu.TripInfo.prototype.removePopularPositions = function() {
   $('.js-lat-lng-row').remove();
 }
 
+/**
+ * Show spinner to indicate the progress
+ */
 rebu.TripInfo.prototype.showSpinner = function() {
   $('#spinner').show();
 }
 
+/**
+ * Hide spinner to indicate the operation is done
+ */
 rebu.TripInfo.prototype.hideSpinner = function() {
   $('#spinner').hide();
 }
 
+/**
+ * draw marker that is associated with particular row
+ */
 var addMarkerFromRow = function(tripInfo, $row) {
 	var lat = $row.find('.lat-popular').text(),
 	  lng = $row.find('.lng-popular').text(),
@@ -70,6 +94,9 @@ var addMarkerFromRow = function(tripInfo, $row) {
 	tripInfo.mapDrawer.addMarker(location);
 }
 
+/**
+ * draw street view that is associated with particular row
+ */
 var drawStreetView = function(tripInfo, $row) {
 	var lat = $row.find('.lat-popular').text(),
 	  lng = $row.find('.lng-popular').text(),

@@ -1,5 +1,9 @@
 package models;
-
+/**
+ * An abstract model class representing a generic geofence
+ * @author temuge
+ *
+ */
 public abstract class Geofence {
 
 	protected Double maxLat, minLat, maxLng, minLng;

@@ -2,7 +2,11 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * A data structure represents a response of getUberTrips request
+ * @author temuge
+ *
+ */
 public class GetUberTripsResponse {
 	public List<UberTrip> uberTrips;
 	public List<PopularPosition> popularPositions;
