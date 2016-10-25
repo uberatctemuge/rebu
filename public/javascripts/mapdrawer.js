@@ -35,7 +35,7 @@ rebu.MapDrawer.prototype.initDrawingManager = function() {
         drawingControl: true,
         drawingControlOptions: {
           position: google.maps.ControlPosition.TOP_CENTER,
-          drawingModes: ['marker', 'polygon', 'circle']
+          drawingModes: ['polygon']
         },
         markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'}
       });
