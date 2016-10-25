@@ -20,7 +20,6 @@ public class UberTripRepo {
 		List<UberTrip> tripsInBox = new UberTripsLoader()
 			.byGeofences(request.getGeoFences())
 			.load();
-		
 		List<UberTrip> trips = new ArrayList<>();
 		for (UberTrip ut : tripsInBox) {
 			for (Geofence gf : request.getGeoFences()) {

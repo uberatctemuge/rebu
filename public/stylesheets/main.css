@@ -5,10 +5,11 @@ html, body {
 	padding: 0;
 }
 
-#info {
+#trip-info-container {
 	float: left;
 	width: 35%;
 	height: 100%;
+	overflow:scroll;
 }
 
 #map {
@@ -18,12 +19,20 @@ html, body {
 }
 
 #trip-count {
-    font-size: 58px;
+    font-size: 100px;
     font-weight: 300;
     color: #EB6E00;
+    text-align: center;
+    width: 50%;
+    margin: auto; 
 }
 
-#trip-info-container {
+#trip-count-container {
+	width: 100%;
+	text-align: center;	
+}
+
+#popular-trip-info-container {
 	margin: 10px;
 }
 
@@ -32,11 +41,45 @@ html, body {
 }
 
 #popular-positions {
-	font-size: 25px;
+	font-size: 20px;
 	font-weight: 300;
 }
 
-.lat-lng-row:hover {
-	background-color: #F8F8F8;
-	cursor: pointer; cursor: hand;
+#announcement {
+	width: 100%;
+	text-align: center;	
+}
+
+#date-info {
+	font-size: 100px;
+    font-weight: 300;
+    color: #EB6E00;
+    text-align: center;
+    width: 100%;
+    margin: auto; 
+}
+
+.lat-lng-element  {
+	padding: 10px;
+}
+
+.lat-lng-row :hover {
+	cursor: pointer; 
+	cursor: hand;
+}
+
+#spinner-container {
+	top: 50%;
+	transform: translateY(-50%);
+	left: 50%;
+    position: relative;
+    margin-left: -15px;
+    width: 30px;
+    height: 30px;
+}
+
+#spinner {
+	width: 30px;
+    height: 30px;
+    display: none;
 }

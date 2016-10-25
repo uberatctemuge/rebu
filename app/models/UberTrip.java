@@ -18,6 +18,7 @@ import com.google.gson.JsonObject;
 
 import play.db.jpa.JPA;
 import play.db.jpa.Model;
+import util.GoogleMapUtil;
 /**
  * A model represents a single uber trip with 
  * 1 pickup location/time and 1 dropoff location/time
@@ -27,6 +28,7 @@ import play.db.jpa.Model;
 @Entity
 @Table(name="uber_trips")
 public class UberTrip extends Model{
+	
 	public Double pickup_lat;
 	public Double pickup_lng;
 	public Double dropoff_lat;

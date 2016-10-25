@@ -1,5 +1,7 @@
 package models;
 
+import util.GoogleMapUtil;
+
 import com.google.gson.JsonObject;
 
 /**
@@ -26,6 +28,9 @@ public class PopularPosition {
 		json.addProperty("lat", latLng.lat);
 		json.addProperty("lng", latLng.lng);
 		json.addProperty("count", count);
+		json.addProperty(
+			"street_view_url", 
+			GoogleMapUtil.buildStreetViewUrl(latLng.lat, latLng.lng));
 		return json;
 	}
 	

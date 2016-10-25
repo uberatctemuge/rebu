@@ -16,7 +16,7 @@ rebu.HeatMap.prototype.initHeatMap = function(map, points) {
 	if (point === undefined) {continue;}
 	googleLatLngs.push(new google.maps.LatLng(point["lat"], point["lng"]));
   }
-  var heatmap = new google.maps.visualization.HeatmapLayer({
+  self.heatmap = new google.maps.visualization.HeatmapLayer({
     data: googleLatLngs,
     map: map
   });
@@ -24,6 +24,6 @@ rebu.HeatMap.prototype.initHeatMap = function(map, points) {
   heatmap.setMap(map);
 }
 
-rebu.HeatMap.prototype.toggleHeatmap = function(map, heatmap) {
-  heatmap.setMap(heatmap.getMap() ? null : map);
+rebu.HeatMap.prototype.removeHeatmap = function() {
+  self.heatmap.setMap(null);
 }

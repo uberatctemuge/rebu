@@ -1,10 +1,22 @@
-<div id="js-trip-info-container trip-info-container">
+<div id="spinner-container">
+	<img id="spinner" src="http://consumer.huawei.com/minisite/pe/p9/images/spinner.gif">
+</div>
+
+<div id="popular-trip-info-container">
+  <div id="announcement">
+	<p id="date-info">04/2014</p> 
+	<p>uber trips data</p>
+  </div>
   <div id="trip-count-container" style="display: none">
-  	<span id="trip-count"></span> trips
+  	<span id="trip-count"></span> 
+  	<p>pickup locations</p>
   </div>
   <table id="popular-positions">
   	<tr id="popular-positions-headers" style="display: none">
-  		<td>Latitude</td><td>Longitude</td><td>Count</td>
+  		<td></td>
+  		<td class="lat-lng-element">Lat</td>
+  		<td class="lat-lng-element">Lng</td>
+  		<td>Count</td>
   	</tr>	
   </table>
 </div>
