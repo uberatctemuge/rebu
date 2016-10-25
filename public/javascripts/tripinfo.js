@@ -13,6 +13,14 @@ rebu.TripInfo = function(mapDrawer) {
  */
 rebu.TripInfo.prototype.init = function(mapDrawer) {
   this.mapDrawer = mapDrawer;
+  this.addBinderForHideStreetView();
+}
+
+rebu.TripInfo.prototype.addBinderForHideStreetView = function() {
+  var self = this;
+  $('#js-back-to-map').click(function() {
+    self.mapDrawer.hideStreetView();
+  });
 }
 
 /**
@@ -80,6 +88,10 @@ rebu.TripInfo.prototype.showSpinner = function() {
  */
 rebu.TripInfo.prototype.hideSpinner = function() {
   $('#spinner').hide();
+}
+
+rebu.TripInfo.prototype.hideUberLogo= function() {
+  $('#uber-logo').hide();
 }
 
 /**

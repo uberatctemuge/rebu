@@ -114,6 +114,7 @@ rebu.MapDrawer.prototype.sendOverlayCompleteUpdate = function(type, vertices, ma
     mapDrawer.drawHeatmap(data.trips);
 	self.tripInfo.addPositions(data.popularPositions);
 	self.tripInfo.setTripCounts(data.trips.length);
+	self.tripInfo.hideUberLogo();
   });
 }
 
@@ -122,7 +123,13 @@ rebu.MapDrawer.prototype.sendOverlayCompleteUpdate = function(type, vertices, ma
  */
 rebu.MapDrawer.prototype.drawStreetView = function(position) {
   var self = this;
-  self.streetView = new rebu.StreetView(self.map, position, self.dom);
+  this.streetView = new rebu.StreetView(self.map, position, self.dom);
 }
 
+rebu.MapDrawer.prototype.hideStreetView = function() {
+	var self = this;
+	if (self.streetView) {
+		self.streetView.hide();
+	}
+}
 goog.exportSymbol('rebu.MapDrawer', rebu.MapDrawer);
